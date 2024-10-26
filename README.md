@@ -2,67 +2,16 @@
  
 # 🌎 GeoViT, based on GeoCLIP, for worldwide image geolocalization.
 
-## 📎 Getting Started: API
+## 📎 Getting Started: Training
 
-You can install GeoCLIP's module using pip:
-
-```
-pip install geoclip
-```
-
-or directly from source:
+This repo contains a PyTorch implementation of GeoViT, a model for geolocalizing images based on GeoCLIP.
+All data locations are found in runner.py.
 
 ```
-git clone https://github.com/VicenteVivan/geo-clip
-cd geo-clip
-python setup.py install
+python runner.py
 ```
 
-## 🗺️📍 Worldwide Image Geolocalization
-
-![ALT TEXT](/figures/inference.png)
-
-### Usage: GeoCLIP Inference
-
-```python
-import torch
-from geoclip import GeoCLIP
-
-model = GeoCLIP()
-
-image_path = "image.png"
-
-top_pred_gps, top_pred_prob = model.predict(image_path, top_k=5)
-
-print("Top 5 GPS Predictions")
-print("=====================")
-for i in range(5):
-    lat, lon = top_pred_gps[i]
-    print(f"Prediction {i+1}: ({lat:.6f}, {lon:.6f})")
-    print(f"Probability: {top_pred_prob[i]:.6f}")
-    print("")
-```
-
-## 🌐 Worldwide GPS Embeddings
-
-In our paper, we show that once trained, our location encoder can assist other geo-aware neural architectures. Specifically, we explore our location encoder's ability to improve multi-class classification accuracy. We achieved state-of-the-art results on the Geo-Tagged NUS-Wide Dataset by concatenating GPS features from our pre-trained location encoder with an image's visual features. Additionally, we found that the GPS features learned by our location encoder, even without extra information, are effective for geo-aware image classification, achieving state-of-the-art performance in the GPS-only multi-class classification task on the same dataset.
-
-![ALT TEXT](/figures/downstream-task.png)
-
-### Usage: Pre-Trained Location Encoder
-
-```python
-import torch
-from geoclip import LocationEncoder
-
-gps_encoder = LocationEncoder()
-
-gps_data = torch.Tensor([[40.7128, -74.0060], [34.0522, -118.2437]])  # NYC and LA in lat, lon
-gps_embeddings = gps_encoder(gps_data)
-print(gps_embeddings.shape) # (2, 512)
-```
-
-### Usage: Custom GeoCLIP-based Model
+## 📎 Getting Started: Predictions
 
 ```python
 from geoclip import GeoCLIP
@@ -91,11 +40,6 @@ for i in range(5):
     print(f"Probability: {top_pred_prob[i]:.6f}")
     print("")
 ```
-
-## Acknowledgments
-
-This project incorporates code from Joshua M. Long's Random Fourier Features Pytorch. For the original source, visit [here](https://github.com/jmclong/random-fourier-features-pytorch).
-
 ## Citation
 
 ```
