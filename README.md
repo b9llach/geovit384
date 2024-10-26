@@ -1,5 +1,3 @@
-<div align="center">    
- 
 # 🌎 GeoViT, based on GeoCLIP, for worldwide image geolocalization.
 
 ## 📎 Getting Started: Training
