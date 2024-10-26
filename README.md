@@ -5,7 +5,7 @@
 ## 📎 Getting Started: Training
 
 This repo contains a PyTorch implementation of GeoViT, a model for geolocalizing images based on GeoCLIP.
-All data locations are found in runner.py.
+All data locations are found in runner.py. To start training, run:
 
 ```
 python runner.py
