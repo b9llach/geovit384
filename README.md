@@ -13,10 +13,14 @@ python runner.py
 
 ```python
 from geoclip import GeoCLIP
-from custom_model import modify_geoclip_architecture, CustomGeoCLIPModel
 
 # Initialize base GeoCLIP model
 base_model = GeoCLIP()
+
+# Modify the architecture
+def modify_geoclip_architecture(model):
+    model.gps_queue = torch.nn.Parameter(torch.randn(2, 4096))
+    return model
 
 # Modify the architecture and create custom model
 custom_model = modify_geoclip_architecture(base_model)
